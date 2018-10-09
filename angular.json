@@ -118,5 +118,12 @@
       }
     }
   },
-  "defaultProject": "akita-shopping-cart"
+  "defaultProject": "akita-shopping-cart",
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "spec": false
+      }
+    }
+  }
 }
