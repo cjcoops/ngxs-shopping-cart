@@ -1,2 +1,12 @@
-<router-outlet></router-outlet>
-
+<div class="container">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/shop']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                true}">Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/shop/cart']" routerLinkActive="active">Cart</a>
+        </li>
+    </ul>
+    <router-outlet></router-outlet>
+</div>
