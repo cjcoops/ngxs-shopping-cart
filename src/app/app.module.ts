@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppComponent } from "./app.component";
 import { Routes, RouterModule } from "@angular/router";
@@ -14,7 +15,7 @@ export const ROUTES: Routes = [
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, RouterModule.forRoot(ROUTES)],
+  imports: [BrowserModule, RouterModule.forRoot(ROUTES), NgbModule],
   providers: [],
   bootstrap: [AppComponent]
 })

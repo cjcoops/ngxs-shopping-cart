@@ -1,3 +1,28 @@
-<p>
-  cart works!
-</p>
+<div class="list-group cart-list">
+  <div *ngFor="let item of cart" class="list-group-item cart-item ">
+    <div class="row">
+      <div class="col-1">
+        {{item.quantity}} x
+      </div>
+      <div class="col-9">
+        {{item.emoji}} {{item.name}}
+      </div>
+      <div class="col-2 text-right">
+        {{(item.quantity * item.price) | currency }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="list-group total-price">
+    <div class="list-group-item ">
+      <div class="row">
+        <div class="col-10">
+          <b>Total Price</b>
+        </div>
+        <div class="col-2 text-right">
+          {{totalPrice | currency }}
+        </div>
+      </div>
+    </div>
+  </div>
