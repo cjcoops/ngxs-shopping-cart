@@ -2,5 +2,10 @@
 @import "~font-awesome/css/font-awesome.css";
 
 body {
-    padding-top: 75px;
+  padding-top: 75px;
+}
+
+i {
+  cursor: pointer;
+  color: dimgray;
 }

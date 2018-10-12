@@ -1,3 +1,4 @@
+import { CartItem } from "./../models/cart-item.model";
 import { Injectable } from "@angular/core";
 import { HttpClient, RequestOptions, HttpHeaders } from "@angular/common/http";
 import { Observable, forkJoin } from "rxjs";
@@ -26,8 +27,8 @@ export class ShopService {
       map(([cart, products]) => {
         return cart.map(item => {
           return {
-            ...item,
-            ...products.find(product => product.id === item.productId)
+            ...products.find(product => product.id === item.productId),
+            ...item
           };
         });
       })
@@ -40,6 +41,15 @@ export class ShopService {
 
     return this.http
       .post<CartItem>(`/api/cart`, payload, options)
+      .pipe(catchError((error: any) => Observable.throw(error.json())));
+  }
+
+  removeFromCart(payload: CartItem): Observable<CartItem> {
+    const headers = new HttpHeaders({ "Content-Type": "application/json" });
+    const options = { headers };
+
+    return this.http
+      .delete<CartItem>(`/api/cart/${payload.id}`, options)
       .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
 }
