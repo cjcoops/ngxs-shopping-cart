@@ -1,10 +1,9 @@
 import { CartItem } from "./../models/cart-item.model";
 import { Injectable } from "@angular/core";
-import { HttpClient, RequestOptions, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, forkJoin } from "rxjs";
 import { Product } from "../models/product.model";
 import { catchError, withLatestFrom, map } from "rxjs/operators";
-import { CartItem } from "../models/cart-item.model";
 
 @Injectable()
 export class ShopService {
