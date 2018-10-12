@@ -1,3 +1,4 @@
+import { CartItem } from "./../../models/cart-item.model";
 import { Component, OnInit } from "@angular/core";
 import { Product } from "../../models/product.model";
 import { ShopService } from "../../services/shop.service";
@@ -13,12 +14,16 @@ export class ProductsComponent implements OnInit {
   constructor(private shopService: ShopService) {}
 
   ngOnInit() {
-    this.shopService.getProducts().subscribe((products) => {
-      this.products = products;  
-    })
+    this.shopService.getProducts().subscribe(products => {
+      this.products = products;
+    });
   }
 
-  onAddToCart(id: string): void {
-    console.log(id);
+  onAddToCart(productId: number): void {
+    console.log(productId);
+    const cartItem: CartItem = { quantity: 1, productId };
+    this.shopService.addItemToCart(cartItem).subscribe(res => {
+      console.log(res);
+    });
   }
 }
