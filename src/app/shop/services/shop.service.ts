@@ -2,7 +2,7 @@ import { CartItem } from "./../models/cart-item.model";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, forkJoin } from "rxjs";
-import { Product } from "../models/product.model";
+import { Product } from "../products/state/product.model";
 import { catchError, withLatestFrom, map } from "rxjs/operators";
 
 @Injectable()

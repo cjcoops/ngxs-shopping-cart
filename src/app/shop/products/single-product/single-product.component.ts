@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Product } from "../../../models/product.model";
+import { Product } from "../state/product.model";
 
 @Component({
   selector: "app-single-product",

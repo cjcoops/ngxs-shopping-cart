@@ -1,5 +1,7 @@
+import { ID } from '@datorama/akita';
+
 export class Product {
-  "id": number;
+  "id": ID;
   "name": string;
   "price": number;
   "emoji": string;
