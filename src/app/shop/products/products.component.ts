@@ -1,7 +1,10 @@
+import { Observable } from "rxjs";
 import { CartItem } from "../models/cart-item.model";
 import { Component, OnInit } from "@angular/core";
 import { Product } from "./state/product.model";
 import { ShopService } from "../services/shop.service";
+import { ProductsService } from "./state/products.service";
+import { ProductsQuery } from "./state/products.query";
 
 @Component({
   selector: "app-products",
@@ -11,19 +14,22 @@ import { ShopService } from "../services/shop.service";
 export class ProductsComponent implements OnInit {
   products: Product[];
 
-  constructor(private shopService: ShopService) {}
+  products$: Observable<Product[]>;
+
+  constructor(
+    private shopService: ShopService,
+    private productsService: ProductsService,
+    private productsQuery: ProductsQuery
+  ) {}
 
   ngOnInit() {
-    this.shopService.getProducts().subscribe(products => {
-      this.products = products;
-    });
+    this.productsService.get().subscribe();
+
+    this.products$ = this.productsQuery.getProducts();
   }
 
   onAddToCart(productId: number): void {
-    console.log(productId);
     const cartItem: CartItem = { quantity: 1, productId };
-    this.shopService.addItemToCart(cartItem).subscribe(res => {
-      console.log(res);
-    });
+    this.shopService.addItemToCart(cartItem).subscribe();
   }
 }

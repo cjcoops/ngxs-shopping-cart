@@ -1,3 +1,4 @@
+import { ProductsService } from './products/state/products.service';
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
@@ -29,7 +30,7 @@ export const ROUTES: Routes = [
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(ROUTES), HttpClientModule],
-  providers: [ShopService],
+  providers: [ShopService, ProductsService],
   declarations: [CartComponent, ProductsComponent, SingleProductComponent]
 })
 export class ShopModule {}
