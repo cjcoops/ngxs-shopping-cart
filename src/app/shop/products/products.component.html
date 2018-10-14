@@ -1,4 +1,4 @@
-<div class="product-list">
+<div *ngIf="!(loading$ | async); else loadingMessage" class="product-list">
   <div *ngFor="let p of (products$ | async)" class="card product">
     <div class="card-body">
       <div class="emoji float-right">{{ p.emoji }}</div>
@@ -8,3 +8,6 @@
     </div>
   </div>
 </div>
+<ng-template #loadingMessage>
+  <div>Loading products...</div>
+</ng-template>

@@ -15,6 +15,7 @@ export class ProductsComponent implements OnInit {
   products: Product[];
 
   products$: Observable<Product[]>;
+  loading$: Observable<boolean>;
 
   constructor(
     private shopService: ShopService,
@@ -26,6 +27,8 @@ export class ProductsComponent implements OnInit {
     this.productsService.get().subscribe();
 
     this.products$ = this.productsQuery.getProducts();
+
+    this.loading$ = this.productsQuery.selectLoading();
   }
 
   onAddToCart(productId: number): void {
