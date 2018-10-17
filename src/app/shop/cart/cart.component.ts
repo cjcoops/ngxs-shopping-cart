@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { CartItem } from "./state/cart-item.model";
 import { Observable } from "rxjs";
 import { Product } from "../products/state/product.model";
+import { CartService } from "./state/cart.service";
 
 @Component({
   selector: "app-cart",
@@ -11,28 +12,16 @@ import { Product } from "../products/state/product.model";
 })
 export class CartComponent implements OnInit {
   cart$: Observable<(CartItem & Product)[]>;
-  totalPrice: number;
+  total$: Observable<number>;
 
-  constructor(private cartQuery: CartQuery) {}
+  constructor(private cartQuery: CartQuery, private cartService: CartService) {}
 
   ngOnInit() {
     this.cart$ = this.cartQuery.selectItems$;
+    this.total$ = this.cartQuery.selectTotal$;
   }
 
-  getCartItems() {
-    // this.shopService.getCartItems().subscribe(cart => {
-    //   console.log(cart);
-    //   this.cart = cart;
-    //   this.totalPrice = this.cart.reduce(
-    //     (total, item) => total + item.price * item.quantity,
-    //     0
-    //   );
-    // });
-  }
-
-  onDelete(cartItem: CartItem) {
-    // this.shopService
-    //   .removeFromCart(cartItem)
-    //   .subscribe(() => this.getCartItems());
+  onDelete({ productId }: CartItem) {
+    this.cartService.remove(productId);
   }
 }

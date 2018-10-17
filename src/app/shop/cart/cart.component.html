@@ -10,8 +10,8 @@
       <div class="col-2 text-right">
         {{(item.quantity * item.price) | currency }}
       </div>
-      <div class="col-1">
-          <i (click)="onDelete(item)"class="fa fa-trash-o"></i>
+      <div class="col-1 text-right">
+        <i (click)="onDelete(item)" class="fa fa-trash-o"></i>
       </div>
     </div>
   </div>
@@ -20,11 +20,14 @@
 <div class="list-group total-price">
   <div class="list-group-item ">
     <div class="row">
-      <div class="col-10">
+      <div class="col-9">
         <b>Total Price</b>
       </div>
       <div class="col-2 text-right">
-        {{totalPrice | currency }}
+        {{total$ | async | currency }}
+      </div>
+      <div class="col-1">
+
       </div>
     </div>
   </div>

@@ -25,6 +25,10 @@ export class CartQuery extends QueryEntity<State, CartItem> {
     publishReplay(),
     refCount()
   );
+
+  selectTotal$ = this.selectItems$.pipe(
+    map(items => items.reduce((total, item) => total + item.total, 0))
+  );
 }
 
 function joinItems([cartItems, products]) {

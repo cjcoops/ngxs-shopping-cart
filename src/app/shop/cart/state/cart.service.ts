@@ -26,47 +26,4 @@ export class CartService {
   remove(productId: ID) {
     this.cartStore.remove(productId);
   }
-
-  // getProducts(): Observable<Product[]> {
-  //   return this.http
-  //     .get<Product[]>(`/api/products`)
-  //     .pipe(catchError((error: any) => Observable.throw(error.json())));
-  // }
-
-  // getCart(): Observable<CartItem[]> {
-  //   return this.http
-  //     .get<CartItem[]>(`/api/cart`)
-  //     .pipe(catchError((error: any) => Observable.throw(error.json())));
-  // }
-
-  // getCartItems(): Observable<CartItem[]> {
-  //   return forkJoin(this.getCart(), this.getProducts()).pipe(
-  //     map(([cart, products]) => {
-  //       return cart.map(item => {
-  //         return {
-  //           ...products.find(product => product.id === item.productId),
-  //           ...item
-  //         };
-  //       });
-  //     })
-  //   );
-  // }
-
-  // addItemToCart(payload: CartItem): Observable<CartItem> {
-  //   const headers = new HttpHeaders({ "Content-Type": "application/json" });
-  //   const options = { headers };
-
-  //   return this.http
-  //     .post<CartItem>(`/api/cart`, payload, options)
-  //     .pipe(catchError((error: any) => Observable.throw(error.json())));
-  // }
-
-  // removeFromCart(payload: CartItem): Observable<CartItem> {
-  //   const headers = new HttpHeaders({ "Content-Type": "application/json" });
-  //   const options = { headers };
-
-  //   return this.http
-  //     .delete<CartItem>(`/api/cart/${payload.id}`, options)
-  //     .pipe(catchError((error: any) => Observable.throw(error.json())));
-  // }
 }
