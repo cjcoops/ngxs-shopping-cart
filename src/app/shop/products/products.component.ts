@@ -1,8 +1,8 @@
 import { Observable } from "rxjs";
-import { CartItem } from "../models/cart-item.model";
+import { CartItem } from "../cart/state/cart-item.model";
 import { Component, OnInit } from "@angular/core";
 import { Product } from "./state/product.model";
-import { ShopService } from "../services/shop.service";
+import { CartService } from "../cart/state/cart.service";
 import { ProductsService } from "./state/products.service";
 import { ProductsQuery } from "./state/products.query";
 
@@ -18,9 +18,9 @@ export class ProductsComponent implements OnInit {
   loading$: Observable<boolean>;
 
   constructor(
-    private shopService: ShopService,
     private productsService: ProductsService,
-    private productsQuery: ProductsQuery
+    private productsQuery: ProductsQuery,
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
@@ -31,8 +31,7 @@ export class ProductsComponent implements OnInit {
     this.loading$ = this.productsQuery.selectLoading();
   }
 
-  onAddToCart(productId: number): void {
-    const cartItem: CartItem = { quantity: 1, productId };
-    this.shopService.addItemToCart(cartItem).subscribe();
+  onAddToCart({id}: Product): void {
+    this.cartService.addProductToCart(id);
   }
 }

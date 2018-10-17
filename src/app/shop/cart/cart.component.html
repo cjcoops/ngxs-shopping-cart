@@ -1,5 +1,5 @@
 <div class="list-group cart-list">
-  <div *ngFor="let item of cart" class="list-group-item cart-item ">
+  <div *ngFor="let item of (cart$ | async)" class="list-group-item cart-item ">
     <div class="row">
       <div class="col-1">
         {{item.quantity}} x

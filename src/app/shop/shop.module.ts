@@ -5,7 +5,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { Routes, RouterModule } from "@angular/router";
 import { ProductsComponent } from "./products/products.component";
 import { CartComponent } from "./cart/cart.component";
-import { ShopService } from "./services/shop.service";
+import { CartService } from "./cart/state/cart.service";
 import { SingleProductComponent } from "./products/single-product/single-product.component";
 
 export const ROUTES: Routes = [
@@ -30,7 +30,7 @@ export const ROUTES: Routes = [
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(ROUTES), HttpClientModule],
-  providers: [ShopService, ProductsService],
+  providers: [CartService, ProductsService],
   declarations: [CartComponent, ProductsComponent, SingleProductComponent]
 })
 export class ShopModule {}
