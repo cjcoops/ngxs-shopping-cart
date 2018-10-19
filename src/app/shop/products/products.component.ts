@@ -1,10 +1,11 @@
 import { Observable } from "rxjs";
-import { CartItem } from "../cart/state/cart-item.model";
 import { Component, OnInit } from "@angular/core";
 import { Product } from "./state/product.model";
 import { CartService } from "../cart/state/cart.service";
 import { ProductsService } from "./state/products.service";
 import { ProductsQuery } from "./state/products.query";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { CreateProductComponent } from "./create-product/create-product.component";
 
 @Component({
   selector: "app-products",
@@ -20,7 +21,8 @@ export class ProductsComponent implements OnInit {
   constructor(
     private productsService: ProductsService,
     private productsQuery: ProductsQuery,
-    private cartService: CartService
+    private cartService: CartService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit() {
@@ -31,7 +33,12 @@ export class ProductsComponent implements OnInit {
     this.loading$ = this.productsQuery.selectLoading();
   }
 
-  onAddToCart({id}: Product): void {
+  onAddToCart({ id }: Product): void {
     this.cartService.addProductToCart(id);
+  }
+
+  onClickNew() {
+    const modalRef = this.modalService.open(CreateProductComponent);
+    // modalRef.componentInstance.name = "World";
   }
 }

@@ -1,3 +1,4 @@
+<button class="new-product btn btn-outline-primary" (click)="onClickNew()">New product</button>
 <div *ngIf="!(loading$ | async); else loadingMessage" class="product-list">
   <div *ngFor="let p of (products$ | async)" class="card product">
     <div class="card-body">
