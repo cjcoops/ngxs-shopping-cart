@@ -1,6 +1,6 @@
 import { ProductsQuery } from "./products.query";
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { tap, mapTo, delay } from "rxjs/operators";
 import { Product } from "./product.model";
 import { ProductsStore } from "./products.store";
@@ -33,5 +33,16 @@ export class ProductsService {
       })
     );
     return this.productsQuery.isPristine ? request : noop();
+  }
+
+  create(product: Product) {
+    const headers = new HttpHeaders({ "Content-Type": "application/json" });
+    const options = { headers };
+    return this.http.post<Product>(`/api/products`, product, options).pipe(
+      delay(750),
+      tap(response => {
+        this.productsStore.add(response);
+      })
+    );
   }
 }

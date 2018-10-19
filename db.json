@@ -29,33 +29,18 @@
       "name": "Eggplant",
       "price": 1.25,
       "emoji": "🍆"
-    }
-  ],
-  "cart": [
+    },
     {
-      "quantity": 1,
-      "productId": 5,
+      "name": "Pineapple",
+      "price": 3,
+      "emoji": "🍍",
       "id": 6
     },
     {
-      "quantity": 1,
-      "productId": 1,
+      "name": "Green apple",
+      "price": 0.35,
+      "emoji": "🍏",
       "id": 7
-    },
-    {
-      "quantity": 1,
-      "productId": 2,
-      "id": 9
-    },
-    {
-      "quantity": 1,
-      "productId": 1,
-      "id": 10
-    },
-    {
-      "quantity": 1,
-      "productId": 1,
-      "id": 11
     }
   ]
 }
