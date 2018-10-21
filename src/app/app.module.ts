@@ -10,6 +10,10 @@ export const ROUTES: Routes = [
   {
     path: "shop",
     loadChildren: "./shop/shop.module#ShopModule"
+  },
+  {
+    path: "login",
+    loadChildren: "./auth/auth.module#AuthModule"
   }
 ];
 
