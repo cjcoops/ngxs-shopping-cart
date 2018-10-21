@@ -10,6 +10,7 @@ import { SingleProductComponent } from "./products/single-product/single-product
 import { CreateProductComponent } from "./products/create-product/create-product.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AuthGuard } from "../auth/auth.guard";
 
 export const ROUTES: Routes = [
   {
@@ -19,15 +20,18 @@ export const ROUTES: Routes = [
   },
   {
     path: "cart",
-    component: CartComponent
+    component: CartComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "products",
-    component: ProductsComponent
+    component: ProductsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "products/:id",
-    component: SingleProductComponent
+    component: SingleProductComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

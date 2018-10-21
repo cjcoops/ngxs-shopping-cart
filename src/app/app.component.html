@@ -9,9 +9,14 @@
             </li>
         </ul>
         <ul class="navbar-nav float-right">
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['login']" routerLinkActive="active">Login</a>
+            <li *ngIf="(isLoggedIn$ | async); else login" class="nav-item" (click)="onLogout()" style="cursor: pointer">
+                <a class="nav-link active">Log Out</a>
             </li>
+            <ng-template #login>
+                <li class="nav-item">
+                    <a class="nav-link active" [routerLink]="['login']">Login</a>
+                </li>
+            </ng-template>
         </ul>
     </div>
 </nav>
