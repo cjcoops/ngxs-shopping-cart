@@ -11,6 +11,9 @@ import { CreateProductComponent } from "./products/create-product/create-product
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AuthGuard } from "../auth/auth.guard";
+import { ProdService } from "./products/store/products.service";
+import { NgxsModule } from "@ngxs/store";
+import { ProductState } from "./products/store/product.state";
 
 export const ROUTES: Routes = [
   {
@@ -20,18 +23,18 @@ export const ROUTES: Routes = [
   },
   {
     path: "cart",
-    component: CartComponent,
-    canActivate: [AuthGuard]
+    component: CartComponent
+    // canActivate: [AuthGuard]
   },
   {
     path: "products",
-    component: ProductsComponent,
-    canActivate: [AuthGuard]
+    component: ProductsComponent
+    // canActivate: [AuthGuard]
   },
   {
     path: "products/:id",
-    component: SingleProductComponent,
-    canActivate: [AuthGuard]
+    component: SingleProductComponent
+    // canActivate: [AuthGuard]
   }
 ];
 
@@ -42,9 +45,10 @@ export const ROUTES: Routes = [
     HttpClientModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxsModule.forFeature([ProductState])
   ],
-  providers: [CartService, ProductsService],
+  providers: [CartService, ProductsService, ProdService],
   declarations: [
     CartComponent,
     ProductsComponent,
