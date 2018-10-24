@@ -2,6 +2,8 @@ import { ProductsService } from "./../state/products.service";
 import { Component, OnInit } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Store } from "@ngxs/store";
+import { CreateProduct } from "../store/product.actions";
 
 @Component({
   selector: "app-create-product",
@@ -15,10 +17,7 @@ export class CreateProductComponent implements OnInit {
     emoji: new FormControl("", Validators.required)
   });
 
-  constructor(
-    public activeModal: NgbActiveModal,
-    private productsService: ProductsService
-  ) {}
+  constructor(public activeModal: NgbActiveModal, private store: Store) {}
 
   ngOnInit() {}
 
@@ -27,7 +26,7 @@ export class CreateProductComponent implements OnInit {
     if (valid && EMOJIS[value.emoji.toUpperCase()]) {
       value.emoji = EMOJIS[value.emoji.toUpperCase()];
 
-      this.productsService.create(value).subscribe(() => {
+      this.store.dispatch(new CreateProduct(value)).subscribe(() => {
         this.activeModal.close("Saved");
       });
     }

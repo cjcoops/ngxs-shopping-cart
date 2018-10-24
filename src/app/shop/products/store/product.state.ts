@@ -1,7 +1,7 @@
 import { ProdService } from "./products.service";
-import { State, Selector, Action } from "@ngxs/store";
+import { State, Selector, Action, StateContext } from "@ngxs/store";
 import { Product } from "../state/product.model";
-import { LoadData } from "./product.actions";
+import { LoadData, CreateProduct } from "./product.actions";
 import { tap } from "rxjs/operators";
 
 @State<Product[]>({
@@ -16,6 +16,18 @@ export class ProductState {
     return this.productsService.get().pipe(
       tap((payload: Product[]) => {
         setState([...payload]);
+      })
+    );
+  }
+
+  @Action(CreateProduct)
+  createProduct(
+    { getState, setState }: StateContext<Product[]>,
+    { payload }: CreateProduct
+  ) {
+    return this.productsService.create(payload).pipe(
+      tap((product: Product) => {
+        setState([...getState(), product]);
       })
     );
   }

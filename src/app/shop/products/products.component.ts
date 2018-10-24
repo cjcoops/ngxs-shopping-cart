@@ -5,7 +5,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { CreateProductComponent } from "./create-product/create-product.component";
 import { ProductState } from "./store/product.state";
 import { Select, Store } from "@ngxs/store";
-import { LoadData } from "./store/product.actions";
+import { LoadData, CreateProduct } from "./store/product.actions";
 
 @Component({
   selector: "app-products",
@@ -30,6 +30,6 @@ export class ProductsComponent implements OnInit {
   }
 
   onClickNew() {
-    const modalRef = this.modalService.open(CreateProductComponent);
+    this.modalService.open(CreateProductComponent);
   }
 }

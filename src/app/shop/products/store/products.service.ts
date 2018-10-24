@@ -22,14 +22,11 @@ export class ProdService {
   //     return this.productsQuery.isPristine ? request : noop();
   //   }
 
-  //   create(product: Product) {
-  //     const headers = new HttpHeaders({ "Content-Type": "application/json" });
-  //     const options = { headers };
-  //     return this.http.post<Product>(`/api/products`, product, options).pipe(
-  //       delay(750),
-  //       tap(response => {
-  //         this.productsStore.add(response);
-  //       })
-  //     );
-  //   }
+  create(product: Product) {
+    const headers = new HttpHeaders({ "Content-Type": "application/json" });
+    const options = { headers };
+    return this.http
+      .post<Product>(`/api/products`, product, options)
+      .pipe(delay(750));
+  }
 }
