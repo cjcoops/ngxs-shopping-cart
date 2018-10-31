@@ -9,8 +9,4 @@ export class LoadProducts {
   static type = "[Products] Load Products";
 }
 
-export class LoadProductsSuccess {
-  static type = "[API] Load Products Success"
-}
-
-export type ProductsActions = LoadProducts | CreateProduct | LoadProductsSuccess;
+export type ProductsActions = LoadProducts | CreateProduct;
