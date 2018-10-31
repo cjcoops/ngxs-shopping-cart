@@ -13,15 +13,16 @@ import { ProductState } from '../store';
   styleUrls: ["./products.component.css"]
 })
 export class ProductsComponent implements OnInit {
-  loading$: Observable<boolean>;
   
   @Select(ProductState.products)
   products$: Observable<Product[]>;
+  
+  @Select(state => state.productState.loading)
+  loading$: Observable<boolean>;
 
   constructor(private modalService: NgbModal, private store: Store) {}
 
   ngOnInit() {
-    this.loading$ = of(false);
     this.store.dispatch(new LoadProducts());
   }
 

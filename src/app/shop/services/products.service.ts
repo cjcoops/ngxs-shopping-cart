@@ -8,8 +8,7 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   get() {
-    return this.http.get<Product[]>(`/api/products`);
-    // return this.http.get<Product[]>(`/api/products`).pipe(delay(750));
+    return this.http.get<Product[]>(`/api/products`).pipe(delay(1000));
   }
 
   //   getProduct(id: ID) {

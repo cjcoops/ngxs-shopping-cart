@@ -30,24 +30,32 @@ export class ProductState {
 
   @Action(productActions.LoadProducts)
   loadData({ patchState }) {
+    patchState({
+      loading: true
+    });
+
     return this.productsService.get().pipe(
       tap((payload: Product[]) => {
         patchState({
-          products: payload
+          products: payload,
+          loading: false
         });
       })
     );
   }
 
-  // @Action(productActions.CreateProduct)
-  // createProduct(
-  //   { getState, setState }: StateContext<Product[]>,
-  //   { payload }: CreateProduct
-  // ) {
-  //   return this.productsService.create(payload).pipe(
-  //     tap((product: Product) => {
-  //       setState([...getState(), product]);
-  //     })
-  //   );
-  // }
+  @Action(productActions.CreateProduct)
+  createProduct(
+    { getState, patchState }: StateContext<ProductStateModel>,
+    { payload }: productActions.CreateProduct
+  ) {
+    const state = getState();
+    return this.productsService.create(payload).pipe(
+      tap((product: Product) => {
+        patchState({
+          products: [...state.products, product]
+        });
+      })
+    );
+  }
 }

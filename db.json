@@ -47,6 +47,12 @@
       "price": 5.5,
       "emoji": "🍣",
       "id": 8
+    },
+    {
+      "name": "Apple",
+      "price": 1,
+      "emoji": "🍎",
+      "id": 9
     }
   ]
 }
