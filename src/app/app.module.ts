@@ -1,4 +1,3 @@
-import { ProductState } from "./shop/products/store/product.state";
 import { AuthModule } from "./auth/auth.module";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
@@ -30,7 +29,7 @@ export const ROUTES: Routes = [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     NgbModule,
-    NgxsModule.forRoot([]),
+    NgxsModule.forRoot(),
     AuthModule
   ],
   providers: [AuthGuard],

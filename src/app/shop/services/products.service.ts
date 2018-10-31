@@ -1,11 +1,10 @@
+import { Product } from "./../products/state/product.model";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Product } from "./../state/product.model";
-import { tap, mapTo, delay } from "rxjs/operators";
-import { timer } from "rxjs";
+import { delay } from "rxjs/operators";
 
 @Injectable()
-export class ProdService {
+export class ProductsService {
   constructor(private http: HttpClient) {}
 
   get() {

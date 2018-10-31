@@ -1,4 +1,3 @@
-import { ProductsService } from "./../state/products.service";
 import { Component, OnInit } from "@angular/core";
 import { Product } from "../state/product.model";
 import { Observable } from "rxjs";
@@ -16,7 +15,7 @@ export class SingleProductComponent implements OnInit {
 
   constructor(
     private productsQuery: ProductsQuery,
-    private productsService: ProductsService,
+    // private productsService: ProductsService,
     private route: ActivatedRoute,
     private productsStore: ProductsStore
   ) {}
@@ -25,7 +24,7 @@ export class SingleProductComponent implements OnInit {
     this.route.params.subscribe(params => {
       const id = +params["id"];
       this.productsStore.setPristine();
-      this.productsService.getProduct(id).subscribe();
+      // this.productsService.getProduct(id).subscribe();
       this.product$ = this.productsQuery.selectEntity(id);
     });
   }

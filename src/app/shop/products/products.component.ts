@@ -1,11 +1,11 @@
+import { ProductsActions, LoadProducts } from './../store/product.actions';
 import { Observable, of } from "rxjs";
 import { Component, OnInit } from "@angular/core";
 import { Product } from "./state/product.model";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { CreateProductComponent } from "./create-product/create-product.component";
-import { ProductState } from "./store/product.state";
 import { Select, Store } from "@ngxs/store";
-import { LoadData, CreateProduct } from "./store/product.actions";
+import { ProductState } from '../store';
 
 @Component({
   selector: "app-products",
@@ -15,14 +15,14 @@ import { LoadData, CreateProduct } from "./store/product.actions";
 export class ProductsComponent implements OnInit {
   loading$: Observable<boolean>;
   
-  @Select(ProductState) 
+  @Select(ProductState.products)
   products$: Observable<Product[]>;
 
   constructor(private modalService: NgbModal, private store: Store) {}
 
   ngOnInit() {
     this.loading$ = of(false);
-    this.store.dispatch(new LoadData());
+    this.store.dispatch(new LoadProducts());
   }
 
   onAddToCart({ id }: Product): void {
