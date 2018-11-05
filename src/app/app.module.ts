@@ -9,6 +9,11 @@ import { AuthGuard } from "./auth/auth.guard";
 import { LoginComponent } from "./auth/login/login.component";
 
 import { NgxsModule } from "@ngxs/store";
+import {
+  NgxsRouterPluginModule,
+  RouterStateSerializer
+} from "@ngxs/router-plugin";
+import { CustomRouterStateSerializer } from "./store/router.state";
 
 export const ROUTES: Routes = [
   { path: "", pathMatch: "full", redirectTo: "shop" },
@@ -28,11 +33,16 @@ export const ROUTES: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
+    NgxsRouterPluginModule.forRoot(),
     NgbModule,
     NgxsModule.forRoot(),
     AuthModule
   ],
-  providers: [AuthGuard],
+  providers: [
+    AuthGuard,
+    { provide: RouterStateSerializer, useClass: CustomRouterStateSerializer }
+  ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {}

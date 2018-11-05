@@ -1,7 +1,9 @@
+import { ProductState } from "../../store";
 import { Component, OnInit } from "@angular/core";
 import { Product } from "../../models/product.model";
 import { Observable } from "rxjs";
-import { ActivatedRoute } from "@angular/router";
+import { Selector, Store } from "@ngxs/store";
+import { RouterState } from "@ngxs/router-plugin";
 
 @Component({
   selector: "app-single-product",
@@ -9,21 +11,12 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./single-product.component.css"]
 })
 export class SingleProductComponent implements OnInit {
+  // @Selector(ProductState.selectedProduct)
   product$: Observable<Product>;
 
-  // constructor(
-  //   private productsQuery: ProductsQuery,
-  //   // private productsService: ProductsService,
-  //   private route: ActivatedRoute,
-  //   private productsStore: ProductsStore
-  // ) {}
+  constructor(private store: Store) {}
 
   ngOnInit() {
-  //   this.route.params.subscribe(params => {
-  //     const id = +params["id"];
-  //     this.productsStore.setPristine();
-  //     // this.productsService.getProduct(id).subscribe();
-  //     this.product$ = this.productsQuery.selectEntity(id);
-  //   });
+    this.product$ = this.store.select(ProductState.selectedProduct);
   }
 }

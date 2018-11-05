@@ -3,6 +3,7 @@ import * as productActions from "./product.actions";
 import { tap } from "rxjs/operators";
 import { Product } from "../models/product.model";
 import { ProductsService } from "../services/products.service";
+import { RouterState } from "@ngxs/router-plugin";
 
 export interface ProductStateModel {
   products: Product[];
@@ -24,8 +25,14 @@ export class ProductState {
   constructor(private productsService: ProductsService) {}
 
   @Selector()
-  static products(state: ProductStateModel) {
+  static products(state: ProductStateModel): Product[] {
     return state.products;
+  }
+
+  @Selector([RouterState])
+  static selectedProduct(state: ProductStateModel, routerState): Product {
+    const { id } = routerState.state.params;
+    return state.products.find(product => product.id === +id);
   }
 
   @Action(productActions.LoadProducts)
