@@ -1,4 +1,4 @@
-import { Product } from "../products/state/product.model";
+import { Product } from "../models/product.model";
 
 export class CreateProduct {
   static type = "CreateProduct";

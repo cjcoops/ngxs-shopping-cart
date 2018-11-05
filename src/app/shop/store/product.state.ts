@@ -1,7 +1,7 @@
 import { State, Selector, Action, StateContext } from "@ngxs/store";
 import * as productActions from "./product.actions";
 import { tap } from "rxjs/operators";
-import { Product } from "../products/state/product.model";
+import { Product } from "../models/product.model";
 import { ProductsService } from "../services/products.service";
 
 export interface ProductStateModel {

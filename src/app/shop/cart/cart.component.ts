@@ -1,9 +1,9 @@
-import { CartQuery } from "./state/cart.query";
 import { Component, OnInit } from "@angular/core";
-import { CartItem } from "./state/cart-item.model";
+import { CartItem } from "../models/cart-item.model";
 import { Observable } from "rxjs";
-import { Product } from "../products/state/product.model";
-import { CartService } from "./state/cart.service";
+import { Product } from "../models/product.model";
+import { Store, Select } from "@ngxs/store";
+import { CartState } from "../store/cart.state";
 
 @Component({
   selector: "app-cart",
@@ -11,17 +11,25 @@ import { CartService } from "./state/cart.service";
   styleUrls: ["./cart.component.css"]
 })
 export class CartComponent implements OnInit {
+  // cart$: Observable<(CartItem & Product)[]>;
+  // total$: Observable<number>;
+
+  @Select(CartState.cartItems)
   cart$: Observable<(CartItem & Product)[]>;
+
+  @Select(CartState.cartTotal)
   total$: Observable<number>;
 
-  constructor(private cartQuery: CartQuery, private cartService: CartService) {}
+  constructor(private store: Store) {}
 
   ngOnInit() {
-    this.cart$ = this.cartQuery.selectItems$;
-    this.total$ = this.cartQuery.selectTotal$;
+    // this.cart$ = this.store.dispatch(new LoadCartItems());
+
+    // this.cart$ = this.cartQuery.selectItems$;
+    // this.total$ = this.cartQuery.selectTotal$;
   }
 
   onDelete({ productId }: CartItem) {
-    this.cartService.remove(productId);
+    // this.cartService.remove(productId);
   }
 }

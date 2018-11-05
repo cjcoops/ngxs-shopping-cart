@@ -1,7 +1,8 @@
+import { AddProductToCart } from './../store/cart.actions';
 import { ProductsActions, LoadProducts } from './../store/product.actions';
 import { Observable, of } from "rxjs";
 import { Component, OnInit } from "@angular/core";
-import { Product } from "./state/product.model";
+import { Product } from "../models/product.model";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { CreateProductComponent } from "./create-product/create-product.component";
 import { Select, Store } from "@ngxs/store";
@@ -27,7 +28,7 @@ export class ProductsComponent implements OnInit {
   }
 
   onAddToCart({ id }: Product): void {
-    // this.cartService.addProductToCart(id);
+    this.store.dispatch(new AddProductToCart(id));
   }
 
   onClickNew() {

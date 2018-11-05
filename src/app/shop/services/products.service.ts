@@ -1,4 +1,4 @@
-import { Product } from "./../products/state/product.model";
+import { Product } from "../models/product.model";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { delay } from "rxjs/operators";

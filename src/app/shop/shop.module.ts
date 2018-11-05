@@ -1,18 +1,17 @@
-import { ProductsService } from './services/products.service';
+import { ProductsService } from "./services/products.service";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { Routes, RouterModule } from "@angular/router";
 import { ProductsComponent } from "./products/products.component";
 import { CartComponent } from "./cart/cart.component";
-import { CartService } from "./cart/state/cart.service";
 import { SingleProductComponent } from "./products/single-product/single-product.component";
 import { CreateProductComponent } from "./products/create-product/create-product.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AuthGuard } from "../auth/auth.guard";
 import { NgxsModule } from "@ngxs/store";
-import { ShopState } from './store';
+import { ShopState } from "./store";
 
 export const ROUTES: Routes = [
   {
@@ -47,7 +46,7 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
     NgxsModule.forFeature(ShopState)
   ],
-  providers: [CartService, ProductsService],
+  providers: [ProductsService],
   declarations: [
     CartComponent,
     ProductsComponent,
